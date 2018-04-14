@@ -24,9 +24,9 @@
     }
 
     private function getOption() {
-      global $order_id; //@todo verify
+      global $PHP_SELF, $order_id; //@todo verify
 
-      if ( isset($_GET['Checkout']) && isset($_GET['Success'])) {
+      if ($PHP_SELF == 'checkout_success.php') {
         $data = '';
 
         $data .= 'fbq(\'track\', \'ViewContent\'); ';
