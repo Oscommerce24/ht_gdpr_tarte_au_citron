@@ -11,7 +11,7 @@
 
   use OSC\OM\HTML;
   use OSC\OM\Registry;
-  use OSC\OM\HTTP;
+  use OSC\OM\OSCOM;
 
   class GDPRGoogleAnalyticsGa {
 
@@ -59,23 +59,23 @@
         $header .= "  ga('ecommerce:addTransaction',{ ";
         $header .= "  'id': '" . $Qorder->valueInt('orders_id') . "', ";
         $header .= "  'affiliation': '" . HTML::outputProtected(STORE_NAME) . "', ";
-        $header .= "  'affiliation': '" . str_replace('http://', '', str_replace('www.', '', HTTP::typeUrlDomain())) . "', ";
+        $header .= "  'affiliation': '" . str_replace('http://', '', str_replace('www.', '', OSCOM::getConfig('http_server', 'Shop') . OSCOM::getConfig('http_path', 'Shop'))) . "', ";
 
         if (isset($totals['ot_total'])) {
           $total = isset($totals['ot_total']);
-        } elseif (isset($totals['TO'])) {
+        } elseif (isset($totals['TO'])) { //@todo Change in futur when app will be implemented
           $total = isset($totals['TO']);
         }
 
         if (isset($totals['ot_shipping'])) {
           $shipping = isset($totals['ot_shipping']);
-        } elseif (isset($totals['SH'])) {
+        } elseif (isset($totals['SH'])) { //@todo Change in futur when app will be implemented
           $shipping = isset($totals['SH']);
         }
 
         if (isset($totals['ot_tax'])) {
           $tax = isset($totals['ot_tax']);
-        } elseif (isset($totals['TX'])) {
+        } elseif (isset($totals['TX'])) { //@todo Change in futur when app will be implemented
           $tax = isset($totals['TX']);
         }
 
